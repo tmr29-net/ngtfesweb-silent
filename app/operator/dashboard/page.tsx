@@ -198,8 +198,7 @@ export default function OperatorDashboard() {
                                     {(previewProject.type === 'class' || previewProject.type === 'food') ? (
                                         <BoothProjectCard
                                             project={previewProject as React.ComponentProps<typeof BoothProjectCard>['project']}
-                                            congestionLevel={previewCongestionLevel}
-                                            waitTime={previewWaitTime}
+                                    
                                         />
                                     ) : (
                                         <DisplayProjectCard
