@@ -132,8 +132,6 @@ export const ProjectList = ({ initialProjects }: ProjectListProps) => {
                                     <BoothProjectCard
                                         key={project.project_id}
                                         project={project as unknown as React.ComponentProps<typeof BoothProjectCard>['project']}
-                                        congestionLevel={congestionMap[project.project_id]}
-                                        waitTime={project.wait_time_min}
                                     />
                                 )
                             })}
