@@ -14,6 +14,8 @@ interface Project {
     title: string;
     type: string;
     class_id: string;
+    floor: number;
+    schedule: string;
     location: string;
     description: string;
     image_url: string;
@@ -117,11 +119,13 @@ export const BoothClient = ({ initialProjects }: BoothClientProps) => {
             </div>
 
             {/* 詳細モーダル */}
-            <ProjectDetailModal 
-                project={selectedProject} 
-                isOpen={isModalOpen} 
-                onClose={() => setIsModalOpen(false)} 
-            />
+            {selectedProject && (
+    <ProjectDetailModal
+    project={selectedProject}
+    isOpen={isModalOpen}
+    onClose={() => setIsModalOpen(false)}
+  />
+)}
         </div>
     )
 }
