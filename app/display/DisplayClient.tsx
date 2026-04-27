@@ -7,17 +7,7 @@ import { Search } from 'lucide-react'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { DisplayProjectCard } from '@/components/project/DisplayProjectCard'
 import { ProjectDetailModal } from '@/components/project/ProjectDetailModal'
-
-// Projectの型定義
-interface Project {
-    project_id: string;
-    title: string;
-    type: string;
-    location: string;
-    floor_number: number;
-    description: string;
-    image_url: string;
-}
+import { Project } from '@/components/project/ProjectDetailModal'
 
 export const DisplayClient = ({ initialProjects }: { initialProjects: Project[] }) => {
     const [searchTerm, setSearchTerm] = useState('')
@@ -118,11 +108,11 @@ export const DisplayClient = ({ initialProjects }: { initialProjects: Project[] 
             </div>
 
             {/* 詳細モーダル */}
-            <ProjectDetailModal 
-                project={selectedProject} 
-                isOpen={isModalOpen} 
-                onClose={() => setIsModalOpen(false)} 
-            />
+            <ProjectDetailModal
+  project={selectedProject ?? ({} as Project)}
+  isOpen={isModalOpen}
+  onClose={() => setIsModalOpen(false)}
+/>
         </div>
     )
 }

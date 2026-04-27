@@ -3,17 +3,8 @@ import { DisplayClient } from './DisplayClient'
 import { CautionNotes } from '@/components/common/CautionNotes'
 import { PaymentNotes } from '@/components/common/PaymentNotes'
 import { DISPLAY_PROJECTS } from './data' // 作成したデータをインポート
+import { Project } from '@/components/project/ProjectDetailModal'
 
-// Projectの型定義
-interface Project {
-    project_id: string;
-    title: string;
-    type: string;
-    location: string;
-    floor_number: number;
-    description: string;
-    image_url: string;
-}
 
 export const metadata: Metadata = {
     title: '展示',

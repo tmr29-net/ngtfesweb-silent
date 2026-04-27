@@ -3,17 +3,7 @@ import { BoothClient } from './BoothClient'
 import { CautionNotes } from '@/components/common/CautionNotes'
 import { PaymentNotes } from '@/components/common/PaymentNotes'
 import { MOCK_PROJECTS } from './data'
-
-// Projectの型定義
-interface Project {
-    project_id: string | number;
-    title: string;
-    type: string;
-    class_id: string;
-    location: string;
-    description: string;
-    image_url: string;
-}
+import { Project } from '@/components/project/ProjectDetailModal'
 
 export const metadata: Metadata = {
   title: '模擬店',

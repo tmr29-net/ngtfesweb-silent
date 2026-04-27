@@ -5,17 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { MapPin } from 'lucide-react'
 import { getProjectTypeBadgeClassName, getProjectTypeLabel } from '@/lib/projectDisplay'
-
-// Projectの型定義
-interface Project {
-    project_id: string | number;
-    title: string;
-    type: string;
-    class_id: string;
-    location: string;
-    description: string;
-    image_url: string;
-}
+import { Project } from '@/components/project/ProjectDetailModal'
 
 export const BoothProjectCard = ({ project }: { project: Project }) => {
     return (
@@ -25,7 +15,7 @@ export const BoothProjectCard = ({ project }: { project: Project }) => {
             <div className="aspect-[4/3] w-full overflow-hidden bg-muted relative">
                 <Image 
                     src={project.image_url || "/images/placeholder.jpg"} 
-                    alt={project.title} 
+                    alt={project.title ?? ""}
                     fill 
                     className="object-cover" 
                 />
@@ -36,9 +26,9 @@ export const BoothProjectCard = ({ project }: { project: Project }) => {
                     {/* プロジェクトタイプに応じたバッジ表示 */}
                     <Badge 
                         variant="outline" 
-                        className={`${getProjectTypeBadgeClassName(project.type, project.location)} rounded-full px-4`}
+                        className={`${getProjectTypeBadgeClassName(project.type ?? "", project.location ?? "")}`}
                     >
-                        {getProjectTypeLabel(project.type, project.location)}
+                        {getProjectTypeLabel(project.type ?? "", project.location ?? "")}
                     </Badge>
                 </div>
                 <CardTitle className="line-clamp-1 text-lg font-bold">{project.title}</CardTitle>

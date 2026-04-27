@@ -6,20 +6,31 @@ import Image from 'next/image'
 import { MapPin, Clock } from 'lucide-react'
 
 // Projectの型定義
-interface Project {
-    project_id: string | number;
-    title: string;
-    type: string;
-    class_id: string;
-    floor: number;
-    schedule: string;
-    location: string;
-    description: string;
-    image_url: string;
+export interface Project {
+    project_id?: string | number | null;
+    title?: string | null;
+    type?: string   | null;
+    location?: string | null;
+    description?: string | null;
+    image_url?: string | null;
+    class_id?: string | null;
+    floor_number?: string | number | null;
+    category?: string | null;
+    schedule?: string | null;
+    day?: string | number | null;
 }
 
-export const ProjectDetailModal = ({ project, isOpen, onClose }: { project: Project; isOpen: boolean; onClose: () => void }) => {
-    if (!project) return null
+// 1. まず Props の型を定義する（22行目の手前に追加）
+interface ProjectDetailModalProps {
+  project: Project | null;
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+// 2. 22行目をこれに置き換える
+export const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProps) => {
+  // project が null の場合は何も出さない（安全策）
+  if (!project) return null;
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
@@ -35,7 +46,7 @@ export const ProjectDetailModal = ({ project, isOpen, onClose }: { project: Proj
                     <div className="aspect-video relative rounded-lg overflow-hidden border">
                         <Image 
                             src={project.image_url || "/images/placeholder.jpg"} 
-                            alt={project.title} 
+                            alt={project.title ?? ""}
                             fill 
                             className="object-cover"
                         />

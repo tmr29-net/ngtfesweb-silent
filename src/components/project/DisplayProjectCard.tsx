@@ -4,20 +4,11 @@ import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { MapPin } from 'lucide-react'
+import { Project } from '@/components/project/ProjectDetailModal'
 
-interface DisplayProjectCardProps {
-    project: {
-        project_id: string
-        title: string
-        location?: string
-        description?: string
-        image_url?: string
-        class_id?: string
-    }
-    hideClassId?: boolean
-}
 
-export const DisplayProjectCard = ({ project, hideClassId = false }: DisplayProjectCardProps) => {
+
+export const DisplayProjectCard = ({ project, hideClassId = false }: { project: Project; hideClassId?: boolean }) => {
     return (
         /* Link を削除し、親の DisplayClient 側でクリックイベントを拾えるようにします */
         <Card className="h-full overflow-hidden transition-all hover:shadow-lg hover:border-primary/50 flex flex-col bg-white py-0 pointer-events-none">
@@ -25,7 +16,7 @@ export const DisplayProjectCard = ({ project, hideClassId = false }: DisplayProj
             <div className="aspect-[4/3] w-full overflow-hidden bg-muted relative">
                 <Image 
                     src={project.image_url || "/images/placeholder.jpg"} 
-                    alt={project.title} 
+                    alt={project.title ?? ""    } 
                     fill 
                     className="object-cover" 
                 />

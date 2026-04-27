@@ -7,19 +7,8 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Input } from '@/components/ui/input'
 import { Search } from 'lucide-react'
 import { ProjectDetailModal } from '@/components/project/ProjectDetailModal'
+import { Project } from '@/components/project/ProjectDetailModal'
 
-// Projectの型定義
-interface Project {
-    project_id: string | number;
-    title: string;
-    type: string;
-    class_id: string;
-    floor: number;
-    schedule: string;
-    location: string;
-    description: string;
-    image_url: string;
-}
 
 interface BoothClientProps {
     initialProjects: Project[]
