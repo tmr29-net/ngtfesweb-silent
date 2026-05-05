@@ -1,7 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { supabase } from '@/lib/supabase'
+import { useState } from 'react'
 import { BoothProjectCard } from '@/components/project/BoothProjectCard'
 import { DisplayProjectCard } from '@/components/project/DisplayProjectCard'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -28,13 +27,7 @@ interface ProjectListProps {
 
 export const ProjectList = ({ initialProjects }: ProjectListProps) => {
     const [projects] = useState<ProjectWithStatus[]>(initialProjects)
-    const [congestionMap, setCongestionMap] = useState<Record<string, number>>(() => {
-        const map: Record<string, number> = {}
-        initialProjects.forEach((p) => {
-            map[p.project_id] = p.congestion_level
-        })
-        return map
-    })
+
 
     // We can also track realtime wait times if we want, but calculation is complex on client.
     // For now, we update Congestion Level via realtime, but Wait Time remains "as of load" 
@@ -47,31 +40,7 @@ export const ProjectList = ({ initialProjects }: ProjectListProps) => {
     const [searchTerm, setSearchTerm] = useState('')
     const [activeTab, setActiveTab] = useState('all')
 
-    // Realtime subscription
-    useEffect(() => {
-        const channel = supabase
-            .channel('public:congestion')
-            .on(
-                'postgres_changes',
-                {
-                    event: '*', // INSERT, UPDATE, DELETE
-                    schema: 'public',
-                    table: 'congestion',
-                },
-                (payload) => {
-                    console.log('Congestion update:', payload)
-                    if (payload.eventType === 'INSERT' || payload.eventType === 'UPDATE') {
-                        const newRecord = payload.new as { project_id: string; level: number }
-                        setCongestionMap(prev => ({ ...prev, [newRecord.project_id]: newRecord.level }))
-                    }
-                }
-            )
-            .subscribe()
 
-        return () => {
-            supabase.removeChannel(channel)
-        }
-    }, [])
 
     // Filter logic
     const filteredProjects = projects.filter((project) => {

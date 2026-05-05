@@ -1,9 +1,7 @@
 import { MetadataRoute } from 'next'
-import { supabase } from '@/lib/supabase'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://ngt-fes.vercel.app'
-  const lastModified = new Date()
 
   // Static routes based on the current app structure
   const staticRoutes = [
@@ -39,30 +37,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  // Dynamic project routes
-  const { data: projects } = await supabase
-    .from('projects')
-    .select('project_id')
-
-  const projectRoutes = (projects || []).map((project) => ({
-    url: `/projects/${project.project_id}`,
-    priority: 0.6,
-    changeFrequency: 'weekly' as const,
-    lastModified,
-  }))
-
-  const allRoutes = [
-    ...staticRoutes.map((route) => ({
-      ...route,
-      lastModified,
-    })),
-    ...projectRoutes,
-  ]
-
-  return allRoutes.map((route) => ({
+  return staticRoutes.map((route) => ({
     url: `${baseUrl}${route.url}`,
-    lastModified: route.lastModified,
+    lastModified: new Date(), // または route.lastModified
     changeFrequency: route.changeFrequency,
     priority: route.priority,
-  }))
+  }));
 }
