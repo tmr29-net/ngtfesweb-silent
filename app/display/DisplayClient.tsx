@@ -48,7 +48,7 @@ export const DisplayClient = ({ initialProjects }: { initialProjects: Project[] 
                 <h2 className="text-xl font-semibold border-b pb-2">会場マップ</h2>
                 <div className="w-full aspect-video bg-muted rounded-md border flex items-center justify-center overflow-hidden relative">
                     <Image
-                        src="/images/venue-map-boothv2.png"
+                        src="/images/venue-map-boothv2.webp"
                         alt="会場マップ"
                         fill
                         className="object-contain"

@@ -17,6 +17,9 @@ const NavLinks = () => (
     <Link href="/" className="text-sm font-medium transition-colors hover:text-primary">
       トップ
     </Link>
+    <Link href="/theme" className="text-sm font-medium transition-colors hover:text-primary" prefetch={false}>
+      テーマ紹介
+    </Link>
     <Link href="/booth" className="text-sm font-medium transition-colors hover:text-primary">
       模擬店
     </Link>
@@ -36,6 +39,9 @@ const MobileNavLinks = () => (
   <>
     <Link href="/" className="block py-2 text-base font-medium transition-colors hover:text-primary">
       トップ
+    </Link>
+    <Link href="/theme" className="block py-2 text-base font-medium transition-colors hover:text-primary" prefetch={false}>
+      テーマ紹介
     </Link>
     <Link href="/booth" className="block py-2 text-base font-medium transition-colors hover:text-primary">
       模擬店

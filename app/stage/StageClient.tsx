@@ -57,7 +57,7 @@ export const StageClient = ({ initialProjects }: StageClientProps) => {
                 <h2 className="text-xl font-semibold border-b pb-2">タイムテーブル</h2>
                 <div className="w-full aspect-video bg-muted rounded-md border flex items-center justify-center overflow-hidden relative">
                     <Image 
-                        src="/images/timetable-stage.png" 
+                        src="/images/timetable-stage.webp" 
                         alt="タイムテーブル" 
                         fill
                         className="object-contain"
